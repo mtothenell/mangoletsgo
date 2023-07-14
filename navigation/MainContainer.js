@@ -4,14 +4,16 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // Screens
-import HomeScreen from './screens/HomeScreen';
-import DetailsScreen from './screens/DetailsScreen';
-import SettingsScreen from './screens/SettingsScreen';
+import Home from './screens/Home';
+import Members from './screens/Members';
+import Tournaments from './screens/Tournaments';
+import Products from './screens/Products';
 
 //Screen names
-const homeName = "Home";
-const detailsName = "Details";
-const settingsName = "Settings";
+const homeName = "Mango";
+const membersName = "Members";
+const tournamentsName = "Tournaments";
+const productName = "Products";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,13 +28,15 @@ function MainContainer() {
                         let rn = route.name;
 
                         if (rn === homeName) {
-                            iconName = focused ? 'home' : 'home-outline';
+                            iconName = focused ? 'globe' : 'globe-outline';
 
-                        } else if (rn === detailsName) {
-                            iconName = focused ? 'list' : 'list-outline';
+                        } else if (rn === membersName) {
+                            iconName = focused ? 'body' : 'body-outline';
 
-                        } else if (rn === settingsName) {
-                            iconName = focused ? 'settings' : 'settings-outline';
+                        } else if (rn === tournamentsName) {
+                            iconName = focused ? 'trophy' : 'trophy-outline';
+                        } else if (rn === productName) {
+                            iconName = focused ? 'trophy' : 'trophy-outline';
                         }
 
                         // You can return any component that you like here!
@@ -40,15 +44,17 @@ function MainContainer() {
                     },
                 })}
                 tabBarOptions={{
-                    activeTintColor: 'tomato',
-                    inactiveTintColor: 'grey',
+                    activeTintColor: 'red',
+                    inactiveTintColor: 'black',
                     labelStyle: { paddingBottom: 10, fontSize: 10 },
-                    style: { padding: 10, height: 70}
+                    style: { padding: 10, height: 70},
+                    tabStyle: { backgroundColor: '#B5C99A' }
                 }}>
 
-                <Tab.Screen name={homeName} component={HomeScreen} />
-                <Tab.Screen name={detailsName} component={DetailsScreen} />
-                <Tab.Screen name={settingsName} component={SettingsScreen} />
+                <Tab.Screen name={homeName} component={Home} />
+                <Tab.Screen name={membersName} component={Members} />
+                <Tab.Screen name={tournamentsName} component={Tournaments} />
+                <Tab.Screen name={productName} component={Products} />
 
             </Tab.Navigator>
         </NavigationContainer>

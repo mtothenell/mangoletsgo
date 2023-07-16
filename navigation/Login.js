@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
-import mangoLogo from "../assets/mlogosmall.png";
+import mangoLogo from "mangotest.png";
 import TextInputField from "../components/TextInputField";
 import ButtonForInput from "../components/ButtonForInput";
 

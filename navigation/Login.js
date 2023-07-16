@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
-import mangoLogo from "../assets/mangoLogoSmall.png";
+import mangoLogo from "../assets/mlogosmall.png";
 import TextInputField from "../components/TextInputField";
 import ButtonForInput from "../components/ButtonForInput";
 
 export default function Login() {
+
     return (
         <>
             <View style={styles.container}>

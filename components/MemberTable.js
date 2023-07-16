@@ -5,15 +5,15 @@ const MemberTable = ({member}) => {
     return (
         <View style={styles.table}>
             <View style={styles.tableRow}>
-                <Text style={styles.headerCell}>Medlemsnr</Text>
                 <Text style={styles.headerCell}>Förnamn</Text>
                 <Text style={styles.headerCell}>Efternamn</Text>
+                <Text style={styles.headerCell}>Favoritslag</Text>
             </View>
             {member.map((member, index) => (
                 <View key={member.id} style={styles.tableRow}>
-                    <Text style={styles.dataCell}>{index + 1}</Text>
-                    <Text style={styles.dataCell}>{member.firstName}</Text>
+                    <Text style={[styles.dataCell]}>{member.firstName}</Text>
                     <Text style={styles.dataCell}>{member.lastName}</Text>
+                    <Text style={styles.dataCell}>{member.favoriteShot}</Text>
                 </View>
             ))}
         </View>
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     },
     tableRow: {
         flexDirection: 'row',
+        marginVertical: -2
     },
     headerCell: {
         flex: 1,
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         textAlign: 'center',
-    },
+    }
 });
 
 export default MemberTable;

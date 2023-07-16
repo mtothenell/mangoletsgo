@@ -6,7 +6,7 @@ export default function Tournaments({ navigation }) {
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFF9C9' }}>
             <Text
                 onPress={() => navigation.navigate('Home')}
-                style={{ fontSize: 20, fontWeight: 'bold' }}>Turneringar</Text>
+                style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>Vi planerar att hålla en ny americano i Augusti på WAP. Håll utkik!</Text>
         </View>
     );
 }

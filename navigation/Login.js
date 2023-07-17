@@ -5,7 +5,7 @@ import ButtonForInput from "../components/ButtonForInput";
 
 export default function Login() {
 
-    const mangoLogo = 's3://mangox3/mlogosmall.png';
+    const mangoLogo = 'https://mangox3.s3.eu-north-1.amazonaws.com/mlogosmall.png';
 
     return (
         <>
@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     logo: {
-        width: '40%',
+        width: 100,
+        height: 150,
         resizeMode: 'contain',
         justifyContent: 'center',
         alignItems: 'center',

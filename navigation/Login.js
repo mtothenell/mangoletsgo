@@ -1,16 +1,17 @@
 import * as React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
-import mangoLogo from "../mangotest.png";
 import TextInputField from "../components/TextInputField";
 import ButtonForInput from "../components/ButtonForInput";
 
 export default function Login() {
 
+    const mangoLogo = 'https://mangox3.s3.eu-north-1.amazonaws.com/mlogosmall.png';
+
     return (
         <>
             <View style={styles.container}>
 
-                <Image style={styles.logo} source={mangoLogo}></Image>
+                <Image style={styles.logo} source={ {uri: mangoLogo} }></Image>
 
                 <TextInputField placeholder={''} textInput={'Användarnamn'} bgColor={'#FFFFFF'}/>
                 <TextInputField placeholder={''} textInput={'Lösenord'} bgColor={'#FFFFFF'}/>

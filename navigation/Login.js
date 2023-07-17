@@ -5,7 +5,7 @@ import ButtonForInput from "../components/ButtonForInput";
 
 export default function Login() {
 
-    const mangoLogo = 'https://mangox3.s3.eu-north-1.amazonaws.com/mlogosmall.png';
+    const mangoLogo = 's3://mangox3/mlogosmall.png';
 
     return (
         <>

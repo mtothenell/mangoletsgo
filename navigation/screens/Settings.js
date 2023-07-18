@@ -4,6 +4,7 @@ import TextInputField from "../../components/TextInputField";
 
 export default function Settings({navigation}) {
     return (
+
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFF9C9'}}>
             <Text
                 onPress={() => navigation.navigate('Home')}
@@ -14,6 +15,7 @@ export default function Settings({navigation}) {
             <TextInputField placeholder={'Ändra ditt alias..' } textInput={'Alias'} bgColor={'#B5C99A'}/>
             <TextInputField placeholder={'Ändra ditt favoritslag..' } textInput={'Favoritslag'} bgColor={'#B5C99A'}/>
             <TextInputField placeholder={'Ändra din hemmahall..' } textInput={'Hemmahall'} bgColor={'#B5C99A'}/>
+
         </View>
     );
 }

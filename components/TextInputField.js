@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.7, // Custom shadow opacity
         shadowRadius: 8, // Custom shadow radius
         elevation: 10, // For Android elevation
-        borderRadius: 7
+        borderRadius: 7,
+        paddingLeft: 7
     }
 });

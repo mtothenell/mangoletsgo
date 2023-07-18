@@ -2,8 +2,12 @@ import * as React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import TextInputField from "../components/TextInputField";
 import ButtonForInput from "../components/ButtonForInput";
+import * as Api from "../api/Api";
 
-export default function Login() {
+const Login = ({onLogin, handleLogin}) => {
+    const handleApiLogin = () => {
+        Api.login(onLogin).then(r => (r));
+    };
 
     const mangoLogo = 'https://mangox3.s3.eu-north-1.amazonaws.com/mlogosmall.png';
 
@@ -11,13 +15,17 @@ export default function Login() {
         <>
             <View style={styles.container}>
 
-                <Image style={styles.logo} source={ {uri: mangoLogo} }></Image>
+                <Image style={styles.logo} source={{uri: mangoLogo}}></Image>
 
                 <TextInputField placeholder={''} textInput={'Användarnamn'} bgColor={'#FFFFFF'}/>
                 <TextInputField placeholder={''} textInput={'Lösenord'} bgColor={'#FFFFFF'}/>
 
                 <View style={{marginTop: 20}}>
-                    <ButtonForInput/>
+                    <ButtonForInput onPress={handleApiLogin} Text_={'Logga in'}/>
+                </View>
+
+                <View style={{marginTop: 20}}>
+                    <ButtonForInput onPress={onLogin} Text_={'Gå in som gäst'}/>
                 </View>
 
             </View>
@@ -40,10 +48,13 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     logo: {
-        width: 100,
-        height: 150,
+        width: 200,
+        height: 200,
         resizeMode: 'contain',
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 55,
     }
 });
+
+export default Login;

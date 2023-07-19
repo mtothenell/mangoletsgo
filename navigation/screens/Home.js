@@ -22,7 +22,7 @@ export default function Home({navigation}) {
         <View style={[styles.container]}>
             <Text style={styles.text}>Mango Mango Mango</Text>
             <Text style={styles.text}>En community för padelälskare!</Text>
-            <Text>Hej {firstName}</Text>
+            <Text style={styles.textSmall}>Vamos {firstName}!</Text>
         </View>
     );
 }
@@ -41,4 +41,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         textAlign: 'center',
     },
+    textSmall: {
+        fontWeight: 'bold',
+        marginTop: 20,
+        fontSize: 16,
+        color: '#a85756'
+    }
 });

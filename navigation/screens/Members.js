@@ -9,7 +9,7 @@ export default function Members({ navigation}) {
     const [member, setMembers] = useState([]);
 
     useEffect(() => {
-        Api.getTime()
+        Api.getUsers()
             .then(data => {
                 setMembers(data);
             })
@@ -17,7 +17,7 @@ export default function Members({ navigation}) {
     return (
         <View style={{flex: 1, backgroundColor: '#FFF9C9' }}>
             <MemberTable member={member}/>
-            <Text>För att vara en godkänd medlem av Mango x3 så krävs köp av en mangotröja, ett stort padelintresse samt en bra attityd i spelandet.</Text>
+            <Text></Text>
         </View>
     );
 }

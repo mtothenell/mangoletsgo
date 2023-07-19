@@ -1,12 +1,18 @@
 import {StyleSheet, Text, TextInput, View} from "react-native";
 import * as React from "react";
+import {useState} from "react";
 
-export default function TextInputField( {placeholder, textInput, bgColor}) {
+export default function TextInputField({placeholder, textInput, bgColor, inputText, setInputText}) {
+
+    const handleInputChange = (text) => {
+        setInputText(text);
+    }
+
     return (
         <>
             <View>
                 <Text style={styles.text}>{textInput}</Text>
-                <TextInput cursorColor="grey"
+                <TextInput cursorColor="grey" value={inputText} onChangeText={handleInputChange}
                            style={[styles.textInput, {textAlign: 'left', backgroundColor: bgColor}]}
                            placeholder={placeholder}></TextInput>
             </View>

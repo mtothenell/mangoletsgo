@@ -2,6 +2,8 @@ import * as React from 'react';
 import {View, StyleSheet, Image, Text, Dimensions} from 'react-native';
 import TextInputField from "../components/TextInputField";
 import ButtonForInput from "../components/ButtonForInput";
+import MyModal from "../components/myModal";
+
 import * as Api from "../api/Api";
 import {useEffect, useState} from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -11,6 +13,7 @@ const Login = ({onLogin}) => {
     const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isModalVisible, setModalVisible] = useState(false);
     const maxWidth = 500;
 
     const mangoLogo = 'https://mangox3.s3.eu-north-1.amazonaws.com/mlogosmall.png';
@@ -33,16 +36,44 @@ const Login = ({onLogin}) => {
     }, [])
 
     const handleApiLogin = () => {
-        Api.login(onLogin, "test", "test").then(r => (r))
+        Api.login(onLogin, email, password).then(r => (r))
     };
+
+    const openModal = () => {
+        setModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setModalVisible(false);
+    };
+
 
     return (
         <>
             <View style={styles.container}>
+                {screenWidth < maxWidth ? (<>
 
-                {screenWidth > maxWidth ? (<>
-
+                        <View style={{marginBottom: 30}}>
                         <Image style={styles.logo} source={{uri: mangoLogo}}></Image>
+
+                        <TextInputField inputText={email} setInputText={setEmail} placeholder={''}
+                                        textInput={'Email'} bgColor={'#FFFFFF'}/>
+                        <TextInputField inputText={password} setInputText={setPassword} placeholder={''}
+                                        textInput={'Lösenord'}
+                                        bgColor={'#FFFFFF'}/>
+                        </View>
+
+                        <View style={{marginTop: 18}}>
+                            <ButtonForInput onPress={handleApiLogin} Text_={'Logga in'}/>
+                        </View>
+
+                        <View style={{marginTop: 18}}>
+                            <ButtonForInput onPress={openModal} Text_={'Skapa konto'}/>
+                        </View>
+
+                        {/*<View style={{marginTop: 18}}>*/}
+                        {/*    <ButtonForInput onPress={onLogin} Text_={'Gäst'}/>*/}
+                        {/*</View>*/}
                     </>
                 ) : (
                     <Text style={{fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>Mangopadel.se är endast
@@ -50,6 +81,8 @@ const Login = ({onLogin}) => {
                 )}
 
             </View>
+
+            <MyModal visible={isModalVisible} closeModal={closeModal} onLogin={onLogin}></MyModal>
         </>
     );
 }

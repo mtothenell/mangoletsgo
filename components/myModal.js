@@ -14,8 +14,13 @@ const MyModal = ({visible, closeModal, onLogin}) => {
     const [firstname, setFirstName] = useState('');
     const [lastname, setLastname] = useState('');
     const [mangocode, setMangocode] = useState('');
+    const [checkfields, setCheckFields] = useState(false);
 
     const createUser = () => {
+
+        if (email === '' || password === '' || firstname === '' || lastname === '') {
+            setCheckFields(true);
+        }
         Api.createUser(email, password, firstname, lastname, mangocode, onLogin).then(r => (r))
     }
 
@@ -41,6 +46,10 @@ const MyModal = ({visible, closeModal, onLogin}) => {
                     <TextInputField inputText={password} setInputText={setPassword} placeholder={'Välj ett lösenord'}
                                     textInput={'Lösenord'}
                                     bgColor={'#FFFFFF'}/>
+
+                    <View style={globalStyles.textSmall}>
+                        <Text>{checkfields && "Du måste fylla i alla fält!"}</Text>
+                    </View>
 
                     <View style={{marginTop: 15}}>
                         <View style={{marginTop: 18}}>

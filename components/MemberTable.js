@@ -17,7 +17,7 @@ const MemberTable = ({member}) => {
                     <Text style={[styles.dataCell]}>{member.firstName}</Text>
                     <Text style={styles.dataCell}>{member.lastName}</Text>
                     <Text style={styles.dataCell}>{member.favoriteShot}</Text>
-                    <Text style={styles.dataCell}>{member.mangoMember}</Text>
+                    <Text style={styles.dataCell}>{member.mangoMember === true ? "Ja" : "Nej"}</Text>
                 </View>
             ))}
         </View>

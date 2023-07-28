@@ -1,12 +1,13 @@
 import {Alert} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export async function createUser(email, mangocode, firstname, lastname, password, handleLogin) {
+export async function createUser(email, password, firstname, lastname, mangocode, handleLogin) {
 
     try {
 
         if (email !== '' && firstname !== '' && lastname !== '' && password !== '') {
 
+            console.log(mangocode)
             let bool = false;
             if (mangocode === '1337') {
                 bool = true;

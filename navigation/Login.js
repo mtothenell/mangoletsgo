@@ -7,6 +7,7 @@ import MyModal from "../components/myModal";
 import * as Api from "../api/Api";
 import {useEffect, useState} from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import globalStyles from "../styles/globalStyles";
 
 const Login = ({onLogin}) => {
 
@@ -15,6 +16,7 @@ const Login = ({onLogin}) => {
     const [password, setPassword] = useState('');
     const [isModalVisible, setModalVisible] = useState(false);
     const maxWidth = 750;
+    const [checkfields, setCheckFields] = useState(false);
 
     const mangoLogo = 'https://mangox3.s3.eu-north-1.amazonaws.com/mlogosmall.png';
 
@@ -36,6 +38,11 @@ const Login = ({onLogin}) => {
     }, [])
 
     const handleApiLogin = () => {
+
+        if (email === '' || password === '') {
+            setCheckFields(true);
+        }
+
         Api.login(onLogin, email, password).then(r => (r))
     };
 
@@ -53,7 +60,7 @@ const Login = ({onLogin}) => {
             <View style={styles.container}>
                 {screenWidth < maxWidth ? (<>
 
-                        <View style={{marginBottom: 30}}>
+                        <View style={{marginBottom: 10}}>
                         <Image style={styles.logo} source={{uri: mangoLogo}}></Image>
 
                         <TextInputField inputText={email} setInputText={setEmail} placeholder={''}
@@ -63,11 +70,15 @@ const Login = ({onLogin}) => {
                                         bgColor={'#FFFFFF'}/>
                         </View>
 
-                        <View style={{marginTop: 18}}>
+                        <View style={globalStyles.textSmall}>
+                            <Text>{checkfields && "Du måste fylla i alla fält!"}</Text>
+                        </View>
+
+                        <View style={{marginTop: 15}}>
                             <ButtonForInput onPress={handleApiLogin} Text_={'Logga in'}/>
                         </View>
 
-                        <View style={{marginTop: 18}}>
+                        <View style={{marginTop: 15}}>
                             <ButtonForInput onPress={openModal} Text_={'Skapa konto'}/>
                         </View>
 
@@ -107,7 +118,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 55,
+        marginBottom: 40,
     }
 });
 

@@ -3,41 +3,68 @@ import {View, Text, TextInput, StyleSheet} from 'react-native';
 import TextInputField from "../../components/TextInputField";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {useEffect, useState} from "react";
+import * as Api from "../../api/Api";
+import ButtonForInput from "../../components/ButtonForInput";
+import {useFocusEffect} from "@react-navigation/native";
 
 export default function Settings({navigation}) {
 
-    const [storedFirstName, setStoredFirstName] = useState('');
-    const [storedLastName, setStoredLastName] = useState('');
+    const [storedUserData, setStoredUserData] = useState('');
+    const [nickname, setNickname] = useState('');
+    const [favoriteShot, setFavoriteShot] = useState('');
+    const [password, setPassword] = useState('');
 
-    useEffect(() => {
-        AsyncStorage.getItem('firstName').then((value) => {
-            setStoredFirstName(value);
+    const fetchStoredUserData = async () => {
+        try {
+            AsyncStorage.getItem('email').then(data => {
+                const email = JSON.parse(data);
+                setStoredUserData(email);
 
-        })
-        AsyncStorage.getItem('lastName').then((value) => {
-            setStoredLastName(value);
+                Api.getAUser(email).then(data => {
+                    setStoredUserData(data);
+                    setNickname(data.nickname);
+                    setFavoriteShot(data.favoriteShot);
+                    setPassword(data.password);
+                })
+            })
+        } catch
+            (error) {
+            console.log('Error fetching data from AsyncStorage:', error);
+        }
+    }
 
-        }).catch((error) => {
-            console.error('Error reading data from AsyncStorage', error);
-        })
+    const updateSettings = () => {
+        Api.updateUser(storedUserData.email, nickname, favoriteShot, password).then(r => (r))
+    };
 
-    }, []);
+    useFocusEffect(React.useCallback(() => {
+        fetchStoredUserData().then(r => (r));
+    }, [])); //
+
 
     return (
-
-
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFF9C9'}}>
-            <Text
-                onPress={() => navigation.navigate('Home')}
-                style={{fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>Ändra dina inställningar</Text>
+            <Text style={{fontSize: 20, fontWeight: 'bold', textAlign: 'center', marginBottom: 50}}>Ändra dina
+                inställningar</Text>
 
+            <TextInputField placeholder={storedUserData.email} textInput={'Email'} bgColor={'grey'} isEditable={false}/>
 
-            <TextInputField placeholder={storedFirstName} textInput={'Förnamn'} bgColor={'#B5C99A'}/>
-            <TextInputField placeholder={storedLastName} textInput={'Efternamn'} bgColor={'#B5C99A'}/>
-            <TextInputField placeholder={'Ändra ditt alias..'} textInput={'Alias'} bgColor={'#B5C99A'}/>
-            <TextInputField placeholder={'Ändra ditt favoritslag..'} textInput={'Favoritslag'} bgColor={'#B5C99A'}/>
-            <TextInputField placeholder={'Ändra din hemmahall..'} textInput={'Hemmahall'} bgColor={'#B5C99A'}/>
+            <TextInputField placeholder={storedUserData.firstName} textInput={'Förnamn'} bgColor={'grey'} isEditable={false}/>
 
+            <TextInputField placeholder={storedUserData.lastName} textInput={'Efternamn'} bgColor={'grey'} isEditable={false}/>
+
+            <TextInputField inputText={nickname} setInputText={setNickname} placeholder={storedUserData.nickName}
+                            textInput={'Alias'} bgColor={'#B5C99A'} isEditable={true}/>
+
+            <TextInputField inputText={favoriteShot} setInputText={setFavoriteShot} placeholder={storedUserData.favoriteShot}
+                            textInput={'Favoritslag'} bgColor={'#B5C99A'} isEditable={true}/>
+
+            <TextInputField inputText={password} setInputText={setPassword} placeholder={storedUserData.password}
+                            textInput={'Lösenord'} bgColor={'#B5C99A'} isEditable={true}/>
+
+            <View style={{marginTop: 30}}>
+                <ButtonForInput onPress={updateSettings} Text_={'Spara ändringar'}/>
+            </View>
         </View>
     );
 }

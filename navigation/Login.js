@@ -9,6 +9,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const Login = ({onLogin}) => {
 
     const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const maxWidth = 500;
+
+    const mangoLogo = 'https://mangox3.s3.eu-north-1.amazonaws.com/mlogosmall.png';
 
     useEffect(() => {
         // Event listener to update screen width on orientation change
@@ -28,35 +33,21 @@ const Login = ({onLogin}) => {
     }, [])
 
     const handleApiLogin = () => {
-        Api.login(onLogin, username, password).then(r => (r));
+        Api.login(onLogin, "test", "test").then(r => (r))
     };
-
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-
-    const mangoLogo = 'https://mangox3.s3.eu-north-1.amazonaws.com/mlogosmall.png';
 
     return (
         <>
-
             <View style={styles.container}>
 
-                {screenWidth > 10 &&
-                    <Image style={styles.logo} source={{uri: mangoLogo}}></Image>}
+                {screenWidth > maxWidth ? (<>
 
-                <TextInputField inputText={username} setInputText={setUsername} placeholder={''}
-                                textInput={'Användarnamn'} bgColor={'#FFFFFF'}/>
-                <TextInputField inputText={password} setInputText={setPassword} placeholder={''}
-                                textInput={'Lösenord'}
-                                bgColor={'#FFFFFF'}/>
-
-                <View style={{marginTop: 20}}>
-                    <ButtonForInput onPress={handleApiLogin} Text_={'Logga in'}/>
-                </View>
-
-                <View style={{marginTop: 20}}>
-                    <ButtonForInput onPress={onLogin} Text_={'Gå in som gäst'}/>
-                </View>
+                        <Image style={styles.logo} source={{uri: mangoLogo}}></Image>
+                    </>
+                ) : (
+                    <Text style={{fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>Mangopadel.se är endast
+                        tillgänglig för mobilanvändare!</Text>
+                )}
 
             </View>
         </>

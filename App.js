@@ -1,8 +1,7 @@
 import * as React from 'react';
 import MainContainer from './navigation/MainContainer';
 import Login from "./navigation/Login";
-import {useEffect, useState} from "react";
-import {Dimensions,Text} from "react-native";
+import {useState} from "react";
 
 function App() {
 

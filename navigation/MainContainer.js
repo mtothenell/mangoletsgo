@@ -7,7 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Home from './screens/Home';
 import Members from './screens/Members';
 import Tournaments from './screens/Tournaments';
-import Products from './screens/Products';
+import Challenges from './screens/Challenges';
 import Settings from './screens/Settings';
 import {useEffect, useState} from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -16,7 +16,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const homeName = "Mango";
 const membersName = "Medlemmar";
 const tournamentsName = "Turneringar";
-const productName = "Produkter";
+const challengeName = "Utmaningar";
 const settingsName = "Inställningar";
 
 const Tab = createBottomTabNavigator();
@@ -40,7 +40,7 @@ function MainContainer() {
 
                         } else if (rn === tournamentsName) {
                             iconName = focused ? 'trophy' : 'trophy-outline';
-                        } else if (rn === productName) {
+                        } else if (rn === challengeName) {
                             iconName = focused ? 'pricetag' : 'pricetag-outline';
                         } else if (rn === settingsName) {
                             iconName = focused ? 'pricetag' : 'pricetag-outline';
@@ -53,19 +53,27 @@ function MainContainer() {
                     headerStyle: {
                         backgroundColor: '#a85756', // Customize the header background color
                     },
-                })}
-                tabBarOptions={{
-                    activeTintColor: 'red',
-                    inactiveTintColor: 'black',
-                    labelStyle: {paddingBottom: 10, fontSize: 10},
-                    style: {padding: 10, height: 70},
-                    tabStyle: {backgroundColor: '#B5C99A'},
-                }}>
+                    "tabBarActiveTintColor": "red",
+                    "tabBarInactiveTintColor": "black",
+                    "tabBarLabelStyle": {
+                        "paddingBottom": 10,
+                        "fontSize": 10
+                    },
+                    "tabBarItemStyle": {
+                        "backgroundColor": "#B5C99A"
+                    },
+                    "tabBarStyle": [
+                        {
+                            "display": "flex"
+                        },
+                        null
+                    ],
+                })}>
 
                 <Tab.Screen name={homeName} component={Home}/>
                 <Tab.Screen name={membersName} component={Members}/>
                 <Tab.Screen name={tournamentsName} component={Tournaments}/>
-                <Tab.Screen name={productName} component={Products}/>
+                <Tab.Screen name={challengeName} component={Challenges}/>
                 <Tab.Screen name={settingsName} component={Settings}/>
 
             </Tab.Navigator>

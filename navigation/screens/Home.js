@@ -2,27 +2,26 @@ import * as React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {useEffect, useState} from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import globalStyles from "../../styles/globalStyles";
 
 export default function Home({navigation}) {
 
-    const [firstName, setFirstName] = useState('pp')
+    const [storedUserData, setStoredUserData] = useState('');
 
     useEffect(() => {
-        AsyncStorage.getItem('firstName')
-            .then((firstName) => {
-                setFirstName(firstName);
-                console.log(firstName);
-            })
-            .catch((error) => {
-                console.log('Error retrieving firstname:', error);
-            });
+        AsyncStorage.getItem('email').then(data => {
+            const email = JSON.parse(data);
+            setStoredUserData(email)
+        })
     }, []);
 
     return (
         <View style={[styles.container]}>
-            <Text style={styles.text}>Mango Mango Mango</Text>
-            <Text style={styles.text}>En community för padelälskare!</Text>
-            <Text style={styles.textSmall}>Vamos {firstName}!</Text>
+            <Text style={globalStyles.text}>Mango Mango Mango</Text>
+            <Text style={globalStyles.text}>En community för padelälskare!</Text>
+            <Text style={globalStyles.textSmall}>
+                Vamos! {storedUserData && true ? storedUserData : ""}
+            </Text>
         </View>
     );
 }
@@ -33,18 +32,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#FFF9C9',
-    },
-    text: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        alignItems: 'center',
-        alignSelf: 'center',
-        textAlign: 'center',
-    },
-    textSmall: {
-        fontWeight: 'bold',
-        marginTop: 20,
-        fontSize: 16,
-        color: '#a85756'
     }
 });

@@ -2,7 +2,7 @@ import {StyleSheet, Text, TextInput, View} from "react-native";
 import * as React from "react";
 import {useState} from "react";
 
-export default function TextInputField({placeholder, textInput, bgColor, inputText, setInputText}) {
+export default function TextInputField({placeholder, textInput, bgColor, inputText, setInputText, isEditable}) {
 
     const handleInputChange = (text) => {
         setInputText(text);
@@ -14,7 +14,7 @@ export default function TextInputField({placeholder, textInput, bgColor, inputTe
                 <Text style={styles.text}>{textInput}</Text>
                 <TextInput cursorColor="grey" value={inputText} onChangeText={handleInputChange}
                            style={[styles.textInput, {textAlign: 'left', backgroundColor: bgColor}]}
-                           placeholder={placeholder}></TextInput>
+                           placeholder={placeholder} editable={isEditable}></TextInput>
             </View>
         </>
     );

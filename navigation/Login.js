@@ -14,7 +14,7 @@ const Login = ({onLogin}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isModalVisible, setModalVisible] = useState(false);
-    const maxWidth = 500;
+    const maxWidth = 750;
 
     const mangoLogo = 'https://mangox3.s3.eu-north-1.amazonaws.com/mlogosmall.png';
 

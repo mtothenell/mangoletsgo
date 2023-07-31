@@ -14,6 +14,12 @@ const globalStyles = StyleSheet.create({
         marginTop: 20,
         fontSize: 16,
         color: '#a85756'
+    },
+    textSmallB: {
+        fontWeight: 'bold',
+        marginTop: 20,
+        fontSize: 16,
+        color: '#000000'
     }
 });
 

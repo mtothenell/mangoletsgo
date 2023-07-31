@@ -96,6 +96,8 @@ export async function login(handleLogin, email, password) {
             Alert.alert('Fel email eller lösenord!');
         } else {
             await AsyncStorage.setItem('email', JSON.stringify(json.email));
+            await AsyncStorage.setItem('firstname', JSON.stringify(json.firstName));
+            await AsyncStorage.setItem('lastname', JSON.stringify(json.lastName));
             handleLogin();
         }
         return json;

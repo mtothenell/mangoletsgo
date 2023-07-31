@@ -1,23 +1,23 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const MemberTable = ({member}) => {
+const MemberTable = ({member, openModal}) => {
+
     return (
         <View style={styles.table}>
             <View style={styles.tableRow}>
                 <Text style={styles.headerCell}>Alias</Text>
                 <Text style={styles.headerCell}>Förnamn</Text>
                 <Text style={styles.headerCell}>Efternamn</Text>
-                <Text style={styles.headerCell}>Favorit-slag</Text>
-                <Text style={styles.headerCell}>Mangomedlem</Text>
+                <Text style={[styles.headerCell]}>Medlem</Text>
             </View>
             {member.map((member) => (
                 <View key={member.email} style={styles.tableRow}>
-                    <Text style={[styles.dataCell]}>{member.nickName}</Text>
+                    <Text onPress={() => openModal(member.email)}
+                          style={[styles.dataCell,{textDecorationLine: 'underline'}]}>{member.nickName}</Text>
                     <Text style={[styles.dataCell]}>{member.firstName}</Text>
                     <Text style={styles.dataCell}>{member.lastName}</Text>
-                    <Text style={styles.dataCell}>{member.favoriteShot}</Text>
-                    <Text style={styles.dataCell}>{member.mangoMember === true ? "Ja" : "Nej"}</Text>
+                    <Text style={[styles.dataCell, { color: '#a85756' }]}>{member.mangoMember === true ? "Ja" : "Nej"}</Text>
                 </View>
             ))}
         </View>

@@ -54,7 +54,6 @@ const Login = ({onLogin}) => {
         setModalVisible(false);
     };
 
-
     return (
         <>
             <View style={styles.container}>

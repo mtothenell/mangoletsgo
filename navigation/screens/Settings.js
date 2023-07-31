@@ -47,11 +47,11 @@ export default function Settings({navigation}) {
             <Text style={{fontSize: 20, fontWeight: 'bold', textAlign: 'center', marginBottom: 50}}>Ändra dina
                 inställningar</Text>
 
-            <TextInputField placeholder={storedUserData.email} textInput={'Email'} bgColor={'grey'} isEditable={false}/>
+            <TextInputField placeholder={storedUserData.email} textInput={'Email'} bgColor={'rgba(73,75,73,0.8)'} isEditable={false}/>
 
-            <TextInputField placeholder={storedUserData.firstName} textInput={'Förnamn'} bgColor={'grey'} isEditable={false}/>
+            <TextInputField placeholder={storedUserData.firstName} textInput={'Förnamn'} bgColor={'rgba(73,75,73,0.8)'} isEditable={false}/>
 
-            <TextInputField placeholder={storedUserData.lastName} textInput={'Efternamn'} bgColor={'grey'} isEditable={false}/>
+            <TextInputField placeholder={storedUserData.lastName} textInput={'Efternamn'} bgColor={'rgba(73,75,73,0.8)'} isEditable={false}/>
 
             <TextInputField inputText={nickname} setInputText={setNickname} placeholder={storedUserData.nickName}
                             textInput={'Alias'} bgColor={'#B5C99A'} isEditable={true}/>

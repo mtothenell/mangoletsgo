@@ -6,12 +6,17 @@ import globalStyles from "../../styles/globalStyles";
 
 export default function Home({navigation}) {
 
-    const [storedUserData, setStoredUserData] = useState('');
+    const [email, setEmail] = useState('');
+    const [firstname, setFirstname] = useState('');
 
     useEffect(() => {
         AsyncStorage.getItem('email').then(data => {
             const email = JSON.parse(data);
-            setStoredUserData(email)
+            setEmail(email)
+        })
+        AsyncStorage.getItem('firstname').then(data2 => {
+            const firstname = JSON.parse(data2);
+            setFirstname(firstname)
         })
     }, []);
 
@@ -20,7 +25,7 @@ export default function Home({navigation}) {
             <Text style={globalStyles.text}>Mango Mango Mango</Text>
             <Text style={globalStyles.text}>En community för padelälskare!</Text>
             <Text style={globalStyles.textSmall}>
-                Vamos! {storedUserData && true ? storedUserData : ""}
+                Vamos {firstname && true ? firstname +"!" : ""}
             </Text>
         </View>
     );

@@ -22,32 +22,27 @@ const ChallengeModal = ({visible, closeModal, challenge, challengeInfo}) => {
                 <View style={{marginTop: 40}}>
                     <View style={styles.levels}>
                         <Image style={styles.mango} source={mango1}></Image>
-                        <Text style={{marginLeft: 10}}>Klara minst 3.</Text>
+                        <Text style={{marginLeft: -50}}>Klara minst 3.</Text>
                     </View>
 
                     <View style={styles.levels}>
                         <Image style={styles.mango} source={mango2}></Image>
-                        <Text style={{marginLeft: 10}}>Klara minst 5.</Text>
+                        <Text style={{marginLeft: -50}}>Klara minst 5.</Text>
                     </View>
 
 
                     <View style={styles.levels}>
                         <Image style={styles.mango} source={mango3}></Image>
-                        <Text style={{marginLeft: 10}}>Klara minst 10.</Text>
+                        <Text style={{marginLeft: -50}}>Klara minst 10.</Text>
 
                     </View>
                 </View>
 
-                <View style={{marginTop: 40}}>
+                <View style={{marginTop: 40, alignSelf: 'center'}}>
 
                     <View style={{marginTop: 18}}>
                         <ButtonForInput onPress={closeModal} Text_={'Anta utmaning'}/>
                     </View>
-
-                    <View style={{marginTop: 18}}>
-                        <ButtonForInput onPress={closeModal} Text_={'Färdig utmaning'}/>
-                    </View>
-
 
                     <View style={{marginTop: 18}}>
                         <ButtonForInput onPress={closeModal} Text_={'Stäng'}/>
@@ -64,12 +59,12 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         backgroundColor: '#B5C99A',
     },
     mango: {
-        width: '20%',
-        height: 45,
+        height: 50,
+        resizeMode: 'contain'
     },
     levels: {
         flexDirection: 'row',

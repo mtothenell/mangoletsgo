@@ -7,7 +7,6 @@ export async function createUser(email, password, firstname, lastname, mangocode
 
         if (email !== '' && firstname !== '' && lastname !== '' && password !== '') {
 
-            console.log(mangocode)
             let bool = false;
             if (mangocode === '1337') {
                 bool = true;

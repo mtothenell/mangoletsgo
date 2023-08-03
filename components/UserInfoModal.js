@@ -1,10 +1,12 @@
-import { View, Modal, Text, StyleSheet } from 'react-native';
+import {View, Modal, Text, StyleSheet, Image} from 'react-native';
 import ButtonForInput from "./ButtonForInput";
 import * as React from "react";
 import * as Api from "../api/Api";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
+import mangoM from "../assets/mangoM.png"
+import mango1 from "../assets/mango1.png";
 
-const UserInfoModal = ({ visible, closeModal, selectedMember }) => {
+const UserInfoModal = ({visible, closeModal, selectedMember}) => {
     const [userData, setUserData] = useState(null);
 
     useEffect(() => {
@@ -17,14 +19,14 @@ const UserInfoModal = ({ visible, closeModal, selectedMember }) => {
         return null;
     }
 
-    console.log(userData.mangoMember);
-
     return (
         <Modal visible={visible}>
             <View style={styles.container}>
 
-                <View style={styles.row}>
-                    {userData.mangoMember && <Text style={[styles.label, {color: '#a85756', marginBottom: 20}]}>Mangomedlem</Text>}
+                <View style={[{alignItems: 'flex-start', flexDirection: 'row',
+                    justifyContent: 'flex-start', marginBottom: 40 }]}>
+                    {userData.mangoMember &&
+                        <Image style={styles.mango} source={mangoM}></Image>}
                 </View>
 
                 <View style={styles.row}>
@@ -72,17 +74,17 @@ const UserInfoModal = ({ visible, closeModal, selectedMember }) => {
                     <Text style={styles.value}>{''}</Text>
                 </View>
 
-                <View style={{ marginTop: 100 }}>
-                    <ButtonForInput onPress={closeModal} Text_={'Utmaningar'} />
+                <View style={{marginTop: 100}}>
+                    <ButtonForInput onPress={closeModal} Text_={'Utmaningar'}/>
                 </View>
 
-                <View style={{ marginTop: 18 }}>
-                    <ButtonForInput onPress={closeModal} Text_={'Bli vän'} />
+                <View style={{marginTop: 18}}>
+                    <ButtonForInput onPress={closeModal} Text_={'Bli vän'}/>
                 </View>
 
 
-                <View style={{ marginTop: 18 }}>
-                    <ButtonForInput onPress={closeModal} Text_={'Stäng'} />
+                <View style={{marginTop: 18}}>
+                    <ButtonForInput onPress={closeModal} Text_={'Stäng'}/>
                 </View>
             </View>
         </Modal>
@@ -112,6 +114,10 @@ const styles = StyleSheet.create({
     value: {
         flex: 3,
         textAlign: 'left',
+    },
+    mango: {
+        height: 50,
+        resizeMode: 'contain'
     },
 });
 

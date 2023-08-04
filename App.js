@@ -11,9 +11,12 @@ function App() {
         setLoggedIn(true);
     }
 
+    const handleLogout = () => {
+        setLoggedIn(false);
+    }
     return (
         <>
-            {!loggedIn ? <Login onLogin={handleLogin}/> : <MainContainer/>}
+            {!loggedIn ? <Login onLogin={handleLogin}/> : <MainContainer handleLogout={handleLogout}/>}
         </>
     );
 }

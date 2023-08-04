@@ -21,7 +21,7 @@ const settingsName = "Inställningar";
 
 const Tab = createBottomTabNavigator();
 
-function MainContainer() {
+function MainContainer({handleLogout}) {
 
     return (
         <NavigationContainer>
@@ -74,7 +74,9 @@ function MainContainer() {
                 <Tab.Screen name={membersName} component={Members}/>
                 <Tab.Screen name={tournamentsName} component={Tournaments}/>
                 <Tab.Screen name={challengeName} component={Challenges}/>
-                <Tab.Screen name={settingsName} component={Settings}/>
+                <Tab.Screen name={settingsName}>
+                    {props => <Settings {...props} handleLogout={handleLogout}/>}
+                </Tab.Screen>
 
             </Tab.Navigator>
         </NavigationContainer>

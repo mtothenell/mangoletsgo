@@ -7,7 +7,7 @@ import * as Api from "../../api/Api";
 import ButtonForInput from "../../components/ButtonForInput";
 import {useFocusEffect} from "@react-navigation/native";
 
-export default function Settings({navigation}) {
+export default function Settings({navigation, handleLogout}) {
 
     const [storedUserData, setStoredUserData] = useState('');
     const [nickname, setNickname] = useState('');
@@ -39,7 +39,17 @@ export default function Settings({navigation}) {
 
     useFocusEffect(React.useCallback(() => {
         fetchStoredUserData().then(r => (r));
-    }, [])); //
+    }, []));
+
+    const funcHandleLogout = async () => {
+
+        try {
+            await AsyncStorage.clear();
+            handleLogout();
+        } catch (error) {
+            console.log("Error while logging out:", error);
+        }
+    }
 
 
     return (
@@ -64,6 +74,10 @@ export default function Settings({navigation}) {
 
             <View style={{marginTop: 30}}>
                 <ButtonForInput onPress={updateSettings} Text_={'Spara ändringar'}/>
+            </View>
+
+            <View style={{marginTop: 20}}>
+                <ButtonForInput onPress={funcHandleLogout} Text_={'Logga ut'}/>
             </View>
         </View>
     );

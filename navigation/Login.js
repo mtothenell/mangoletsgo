@@ -81,9 +81,9 @@ const Login = ({onLogin}) => {
                             <ButtonForInput onPress={openModal} Text_={'Skapa konto'}/>
                         </View>
 
-                        {/*<View style={{marginTop: 18}}>*/}
-                        {/*    <ButtonForInput onPress={onLogin} Text_={'Gäst'}/>*/}
-                        {/*</View>*/}
+                        <View style={{marginTop: 18}}>
+                            <ButtonForInput onPress={() => { Api.login(onLogin, 'Test', 'Test').then(r => (r))}} Text_={'Gäst'}/>
+                        </View>
                     </>
                 ) : (
                     <Text style={{fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>Mangopadel.se är endast

@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     },
     mango: {
         height: 50,
+        width: 50,
         resizeMode: 'contain'
     },
 });

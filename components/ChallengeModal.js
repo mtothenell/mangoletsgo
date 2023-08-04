@@ -1,14 +1,15 @@
 import {View, Modal, Text, StyleSheet, Image} from 'react-native';
 import ButtonForInput from "./ButtonForInput";
 import * as React from "react";
-import mango1 from "../assets/mango1.png"
-import mango2 from "../assets/mango2.png"
-import mango3 from "../assets/mango3.png"
-
 
 import globalStyles from "../styles/globalStyles";
 
 const ChallengeModal = ({visible, closeModal, challenge, challengeInfo}) => {
+
+    const mango1 = 'https://mangox3.s3.eu-north-1.amazonaws.com/mango1.png';
+    const mango2 = 'https://mangox3.s3.eu-north-1.amazonaws.com/mango2.png';
+    const mango3 = 'https://mangox3.s3.eu-north-1.amazonaws.com/mango3.png';
+
 
     return (
         <Modal visible={visible}>
@@ -21,18 +22,18 @@ const ChallengeModal = ({visible, closeModal, challenge, challengeInfo}) => {
 
                 <View style={{marginTop: 40}}>
                     <View style={styles.levels}>
-                        <Image style={styles.mango} source={mango1}></Image>
+                        <Image style={styles.mango} source={{uri: mango1}}></Image>
                         <Text style={{marginLeft: -50}}>Klara minst 3.</Text>
                     </View>
 
                     <View style={styles.levels}>
-                        <Image style={styles.mango} source={mango2}></Image>
+                        <Image style={styles.mango} source={{uri: mango2}}></Image>
                         <Text style={{marginLeft: -50}}>Klara minst 5.</Text>
                     </View>
 
 
                     <View style={styles.levels}>
-                        <Image style={styles.mango} source={mango3}></Image>
+                        <Image style={styles.mango} source={{uri: mango3}}></Image>
                         <Text style={{marginLeft: -50}}>Klara minst 10.</Text>
 
                     </View>

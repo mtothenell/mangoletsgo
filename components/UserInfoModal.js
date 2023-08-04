@@ -3,11 +3,10 @@ import ButtonForInput from "./ButtonForInput";
 import * as React from "react";
 import * as Api from "../api/Api";
 import {useEffect, useState} from "react";
-import mangoM from "../assets/mangoM.png"
-import mango1 from "../assets/mango1.png";
 
 const UserInfoModal = ({visible, closeModal, selectedMember}) => {
     const [userData, setUserData] = useState(null);
+    const mangoM = 'https://mangox3.s3.eu-north-1.amazonaws.com/mangoM.png';
 
     useEffect(() => {
         Api.getAUser(selectedMember).then(data => {
@@ -26,7 +25,7 @@ const UserInfoModal = ({visible, closeModal, selectedMember}) => {
                 <View style={[{alignItems: 'flex-start', flexDirection: 'row',
                     justifyContent: 'flex-start', marginBottom: 40 }]}>
                     {userData.mangoMember &&
-                        <Image style={styles.mango} source={mangoM}></Image>}
+                        <Image style={styles.mango} source={{uri: mangoM}}></Image>}
                 </View>
 
                 <View style={styles.row}>

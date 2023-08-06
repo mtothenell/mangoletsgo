@@ -26,7 +26,14 @@ export async function createUser(email, password, firstname, lastname, mangocode
                 })
             });
 
+            console.log(response.status)
+
+            if(response.status === 500){
+                Alert.alert("En användare med den mailen finns redan. Testa med en annan!")
+            }
+
             const json = await response.json();
+
             await AsyncStorage.setItem('email', JSON.stringify(json.email));
 
             handleLogin();
